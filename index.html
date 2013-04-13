@@ -58,20 +58,22 @@
 	</script>
 	<script id="site_posting" type="text/x-handlebars-template">
 	  	<div class="posting">
-	  		<div class="posting_user">
+	  		<div class="posting_user" onclick="window.location.href='mailto:{{user_email}}'">
 	  			{{user_name}}
 	  		</div>
 	  		<div class="posting_content">
 	  			<div class="posting_tags">
 	  				{{#each tags}}
-						<div class="tag">{{this}}</div>
+	  					{{#if this}}
+							<div class="tag">{{this}}</div>
+						{{/if}}
 					{{/each}}
 	  			</div>
 	  			<div class="posting_description">
 	  				{{description}}
 	  			</div>
 	  			<div class="posting_location">
-	  				San francisco, CA
+	  				{{location}}
 	  			</div>
 	  			<div class="posting_time">
 	  				{{time}}

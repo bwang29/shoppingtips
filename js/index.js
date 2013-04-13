@@ -3,15 +3,20 @@
 function build_postings(){
 	var posting = $("#site_posting").html();
 	var posting_template = Handlebars.compile(posting);
-	for(var i=0; i<20; i++){
-		var posting_html = posting_template({
-			user_name:"Borui Wang",
-			description:"Let's hack smoething really cool tonight! I want  to buld a search engine like google and a social platform like facebook",
-			tags:["nodejs","rails","hot girls"],
-			time:jQuery.timeago(new Date())
-		});
-		$(".container").append(posting_html);
-	}
+	ws.makeGenericGetRequest(root_url+"projects",function(data){
+		console.log(data);
+		for(var key in data){
+			var posting_html = posting_template({
+				user_name:data[key].username,
+				description:data[key].description,
+				tags:data[key].tags,
+				time:jQuery.timeago(data[key].created),
+				location:data[key].location,
+				user_email:data[key].user_email
+			});
+			$(".container").append(posting_html);
+		}
+	});
 }
 
 function build_post_form(){

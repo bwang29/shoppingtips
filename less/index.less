@@ -4,7 +4,7 @@ body{
 	font-family: @font_serif;
 	padding: 0;
 	margin: 0;
-	background: #fefefe;
+	background: @_light_white;
 }
 .post_form{
 	width: 100%;
@@ -62,11 +62,10 @@ body{
 .container{
 	padding-top: 30px;
 	width: 100%;
-	min-height: 800px;
+	background: #fefefe;
 }
 .footer{
 	width: 100%;
-	background: @_light_white;
 	.footer_link{
 		padding: 20px 40px;
 		cursor: pointer;
@@ -125,11 +124,11 @@ body{
 	font-family: @font_dense;
 	display: inline-block;
 	margin: 5px 5px 5px 0px;
-	padding: 5px 5px 5px 10px;
+	padding: 5px 10px;
 
    .remove_tag {
         display: inline; 
-        padding: 0 5px;
+        padding: 0 0 0 5px;
         margin-left: 5px;
         color: @_light_grey;
         .transition(0.2s);
