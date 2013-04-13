@@ -8,4 +8,9 @@ function init_layout(){
 	var layout_html = layout_template({site_name:"Hack with me"});
 	$("body").append(layout_html);
 	setTimeout(build_postings.bind(),0);
+	setTimeout(function(){
+		$(".post_new").click(function(){
+			$(".post_form").slideDown();
+		});
+	},0);
 }
