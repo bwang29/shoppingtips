@@ -36,11 +36,15 @@ function bind_post_form(){
     });
     $('#tags_wrap').click(function() {
         $('#tags').focus();
+        e.preventDefault();
     });
     $('#tags').keydown(function(e) {
         if (e.keyCode == 188) { // comma
             var new_tag_str = $(this).text();
-            if (!new_tag_str) return;
+            if (!new_tag_str) {
+                e.preventDefault();
+                return;
+            }
             $(this).text('');
             var new_tag = make_tag(new_tag_str);
             $(this).before(new_tag);
