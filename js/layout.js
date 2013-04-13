@@ -13,4 +13,5 @@ function init_layout(){
 			$(".post_form").slideDown();
 		});
 	},0);
+	setTimeout(build_post_form.bind(),0);
 }
