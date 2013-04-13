@@ -61,7 +61,34 @@ function bind_post_form(){
         }
     });
     $('#submit').unbind().click(function() {
-        var obj = {
-        };
+        var targetUrl = root_url + '/projects/project_new';
+        var description_unsafe = $('#description').val();
+        var location_unsafe = $('#location').val();
+        var email_unsafe = $('#email').val();
+        var tags_unsafe = [];
+        $('#tags_wrap .tag').each(function(t) {
+            var str = $(this).text();
+            str = str.substring(0, str.length - 1);
+            tags_unsafe.push(str);
+        });
+
+        var postInstance = {
+            description: description_unsafe,
+            location: location_unsafe,
+            user_id: Math.random() * 50 | 0 + 100,
+            username: 'anonymous user',
+            user_email: email_unsafe,
+            user_image: '/images/joe_mama.jpg',
+            tags: tags_unsafe
+        }
+
+        ws.makeGenericPOSTRequest(targetUrl, postInstance, function (data) {
+            //if (data[0] == 'ok') {
+                $('.post_form .form').html('<h1>Submission Succeeded</h1>');
+                setTimeout(function() {
+                    $('.post_form').slideUp(300, build_post_form.bind());
+                }, 2000);
+            //}
+        })
     });
 }
