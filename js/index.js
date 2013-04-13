@@ -7,7 +7,8 @@ function build_postings(){
 		var posting_html = posting_template({
 			user_name:"Borui Wang",
 			description:"Let's hack smoething really cool tonight! I want  to buld a search engine like google and a social platform like facebook",
-			tags:["nodejs","rails","hot girls"]
+			tags:["nodejs","rails","hot girls"],
+			time:jQuery.timeago(new Date())
 		});
 		$(".container").append(posting_html);
 	}

@@ -2,6 +2,7 @@
 	<body>
 		<link href='http://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Roboto+Condensed' rel='stylesheet' type='text/css'>
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery.timeago.js"></script>
 		<script src="js/handlebars.js"></script>
 		<link rel="stylesheet/less" type="text/css" href="less/index.less" />
 		<script src="js/less-1.3.3.min.js"></script>
@@ -30,16 +31,19 @@
 	  			{{user_name}}
 	  		</div>
 	  		<div class="posting_content">
-	  			<div class="posting_description">
-	  				{{description}}
-	  			</div>
 	  			<div class="posting_tags">
 	  				{{#each tags}}
 						<div class="tag">{{this}}</div>
 					{{/each}}
 	  			</div>
+	  			<div class="posting_description">
+	  				{{description}}
+	  			</div>
 	  			<div class="posting_location">
 	  				San francisco, CA
+	  			</div>
+	  			<div class="posting_time">
+	  				{{time}}
 	  			</div>
 	  		</div>
 		</div>
