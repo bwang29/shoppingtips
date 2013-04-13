@@ -1,4 +1,5 @@
 function build_postings(){
+	$(".container").empty();
 	var posting = $("#site_posting").html();
 	var posting_template = Handlebars.compile(posting);
 	ws.makeGenericGetRequest(root_url+"projects",function(data){
@@ -86,6 +87,7 @@ function bind_post_form(){
         ws.makeGenericPOSTRequest(targetUrl, postInstance, function (data) {
             //if (data[0] == 'ok') {
                 $('.post_form .form').html('<h1>Submission Succeeded</h1>');
+                build_postings();
                 setTimeout(function() {
                     $('.post_form').slideUp(300, build_post_form.bind());
                 }, 2000);
