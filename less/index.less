@@ -1,2 +1,38 @@
 @import "elements.less";
 @import "color.less";
+body{
+	font-family: @font_serif;
+	padding: 0;
+	margin: 0;
+}
+.header{
+	width: 100%;
+	padding: 50px 40px 20px 40px;
+	color:@_light_white;
+	background: @_dark_grey;
+	.site_logo{
+		font-family: @font_dense;
+		font-size: 25px;
+		background: @_light_white;
+		display: inline-block;
+		color: @_dark_grey;
+		padding: 5px 15px;
+		cursor: pointer;
+		.transition(0.3s);
+		&:hover{
+			opacity: 0.6;
+		};
+	}
+}
+.container{
+	width: 100%;
+	min-height: 800px;
+}
+.footer{
+	width: 100%;
+	background: @_light_white;
+	min-height: 100px;
+}
+.posting{
+	
+}
