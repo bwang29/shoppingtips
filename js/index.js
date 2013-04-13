@@ -6,8 +6,8 @@ function build_postings(){
 		console.log(data);
 		data.sort(function(a,b){
 			return (new Date(b.created)) - (new Date(a.created));
-		})
-		for(var key = 0; key<data.length; key++){
+		});
+		for(var key = 0; key<20; key++){
 			var posting_html = posting_template({
 				user_name:data[key].username,
 				description:data[key].description,
