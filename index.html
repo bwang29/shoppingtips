@@ -5,15 +5,18 @@
 		<script src="js/handlebars.js"></script>
 		<link rel="stylesheet/less" type="text/css" href="less/index.less" />
 		<script src="js/less-1.3.3.min.js"></script>
+		<script src="js/index.js"></script>
 		<script src="js/layout.js"></script>
-		<script src="js/index.js"></script>	
+			
 
 	</body>
 
 	<script id="site_frame" type="text/x-handlebars-template">
 	  	<div class="header">
-	  		<div class="site_logo">H</div>
-			<h1>{{site_name}}</h1>
+	  		<div class="banner">
+		  		<div class="site_logo">H</div>
+				<h1>{{site_name}}</h1>
+			</div>
 		</div>
 		<div class="container">
 		</div>
@@ -24,14 +27,16 @@
 	<script id="site_posting" type="text/x-handlebars-template">
 	  	<div class="posting">
 	  		<div class="posting_user">
-	  			Borui Wang
+	  			{{user_name}}
 	  		</div>
 	  		<div class="posting_content">
 	  			<div class="posting_description">
-	  				fuck year, just come and build this!!
+	  				{{description}}
 	  			</div>
 	  			<div class="posting_tags">
-	  				cool use ok
+	  				{{#each tags}}
+						<div class="tag">{{this}}</div>
+					{{/each}}
 	  			</div>
 	  			<div class="posting_location">
 	  				San francisco, CA

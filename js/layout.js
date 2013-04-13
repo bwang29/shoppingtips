@@ -4,7 +4,8 @@ $(document).ready(function(){
 
 function init_layout(){
 	var layout = $("#site_frame").html();
-	layout_template = Handlebars.compile(layout);
-	layout_html = layout_template({site_name:"Hack with me"});
+	var layout_template = Handlebars.compile(layout);
+	var layout_html = layout_template({site_name:"Hack with me"});
 	$("body").append(layout_html);
+	setTimeout(build_postings.bind(),0);
 }
