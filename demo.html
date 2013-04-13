@@ -1,0 +1,32 @@
+<html>
+	<body>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="js/handlebars.js"></script>
+		<link rel="stylesheet/less" type="text/css" href="less/demo.less" />
+		<script src="js/less-1.3.3.min.js"></script>
+		
+		<script>
+			$(document).ready(function(){
+				run();
+			});
+			function run(){
+				var source   = $("#entry-template").html();
+				template = Handlebars.compile(source);
+				html = template({title:"hello",body:"yes"});
+				$("#sample").html(html);
+			}
+
+		</script>
+	</body>
+
+	<script id="entry-template" type="text/x-handlebars-template">
+	  <div class="entry">
+		  <h1>{{title}}</h1>
+		  <div class="body">
+		    {{body}}
+		  </div>
+		</div>
+	</script>
+
+	<div id="sample"></div>
+</html>

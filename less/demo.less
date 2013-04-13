@@ -1,0 +1,28 @@
+@import "elements.less";
+
+body{
+	color: red;
+	font-family: arial;
+}
+
+
+.entry{
+	@ii : grey;
+	border: 3px solid #333;
+	.transition(0.2s);
+	cursor: pointer;
+	&:hover{
+		color:blue;
+		font-size: 50px;
+		border: none;
+	};
+	.rounded(10px);
+	.drop-shadow(4px,4px,10px,0.8);
+	.mystyle(@color: green){
+		color: @color;
+	}
+	.body{
+		.mystyle(@ii);
+	}
+}
+
