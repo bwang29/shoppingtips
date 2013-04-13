@@ -10,7 +10,7 @@ body{
 	width: 100%;
 	display: none;
 	.form{
-		padding: 40px;
+		padding: 40px 80px;
 		min-height: 100px;
 		background: @white;
 		border-bottom: 6px solid #333;
@@ -141,40 +141,54 @@ body{
 }
 
 
-@body_width : 35em;
+@post_input_width : 80%;
 
 label {
     .clearfix();
+    font-family: @font_dense; 
 }
 
 #post {
-   font-family: @font_sans; 
    .input_wrap {
-       min-width: @body_width;
-       max-width: @body_width;
-       border: 1px solid @_light_grey;
-       .rounded(3px);
-       padding: 0 5px;
+       min-width: @post_input_width;
+       max-width: @post_input_width;
+       border-bottom: 2px solid @black;
+       margin: 5px 0;
    }
    input, textarea {
+   	   font-family: @font_sans; 
        width: 100%;
        border: none;
        display: inline-block;
        outline: none;
+       font-size: 16px;
+       border-left:none;
+       border-top: none;
+       border-right:none;
    }
    #tags {
        outline: none;
        display: inline-block;
        min-height: 10px;
-       min-width: 1em;
+       min-width: 10px;
    }
    #tags_wrap {
        overflow: hidden;
+       padding:  5px 0;
+       // border: 1px solid @_light_grey;
    }
    #submit {
-       width: 10em;
-       line-height: 2em;
-       font-size: 1.2em;
+       display: inline-block;
+       background: @_grey;
+       color: @white;
+       font-family: @font_dense;
+       padding: 10px 20px;
+       margin-top: 5px;
+       cursor: pointer;
+       .transition(0.2s);
+       &:hover{
+       	opacity: 0.8;
+       };
    }
    .description {
        font-family: @font_serif;

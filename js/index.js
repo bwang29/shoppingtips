@@ -34,7 +34,7 @@ function bind_post_form(){
             }
         }
     });
-    $('#tags_wrap').click(function() {
+    $('#tags_wrap').unbind().click(function(e) {
         $('#tags').focus();
         e.preventDefault();
     });
@@ -55,7 +55,7 @@ function bind_post_form(){
             }
         }
     });
-    $('#submit').click(function() {
+    $('#submit').unbind().click(function() {
         var obj = {
         };
     });
