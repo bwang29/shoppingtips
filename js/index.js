@@ -1,11 +1,12 @@
-
-
 function build_postings(){
 	var posting = $("#site_posting").html();
 	var posting_template = Handlebars.compile(posting);
 	ws.makeGenericGetRequest(root_url+"projects",function(data){
 		console.log(data);
-		for(var key in data){
+		data.sort(function(a,b){
+			return (new Date(b.created)) - (new Date(a.created));
+		})
+		for(var key = 0; key<data.length; key++){
 			var posting_html = posting_template({
 				user_name:data[key].username,
 				description:data[key].description,
