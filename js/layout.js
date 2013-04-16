@@ -103,21 +103,33 @@ function attach_ui_listeners(){
 }
 
 function auto_complete_input(class_name){
-	$("."+class_name).keydown(function(e){
+	$("."+class_name).keyup(function(e){
+		if(e.which == 13){
+			$("."+class_name).val($($("."+class_name+"_search_res")[0]).text());
+			$("."+class_name+"_search_results").empty();
+			return;
+		}
 		$("."+class_name+"_search_results").empty();
 		var query = $("."+class_name).val();
-		if(query.length < 1) return;
 		var search_matches = [];
 		if(class_name == "product_attribute"){
 			for(key in data_attributes_buildable){
 				if((data_attributes_buildable[key].toLowerCase()).indexOf(query.toLowerCase())!= -1){
 					search_matches.push(data_attributes_buildable[key]);
+					if(query.toLowerCase() == data_attributes_buildable[key].toLowerCase()){
+						search_matches = []
+						break;
+					}
 				}
 			}
 		}else{
 			for(key in data_products_buildable){
 				if((key.toLowerCase()).indexOf(query.toLowerCase())!= -1){
 					search_matches.push(key);
+					if(query.toLowerCase() == key.toLowerCase()){
+						search_matches = []
+						break;
+					}
 				}
 			}
 		}
