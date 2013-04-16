@@ -71,14 +71,13 @@ function attach_ui_listeners(){
 		$(".submit_love textarea").val("");
 	});
 
-	$(".search_loves").keydown(function(e){
+	$(".search_loves").keyup(function(e){
 		if(e.which == 13){
 			show_search_res($(".search_res")[0]);
 			return;
 		}
 		$(".search_results").empty();
 		var query = $(".search_loves").val();
-		if(query.length < 1) return;
 		var search_matches = [];
 		for(key in data_products_buildable){
 			if((key.toLowerCase()).indexOf(query.toLowerCase())!= -1){
