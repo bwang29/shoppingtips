@@ -1,5 +1,5 @@
-var data_loves, data_loves_limited, data_products;
-var data_products_buildable;
+var data_loves, data_loves_limited, data_products, data_attributes;
+var data_products_buildable, data_attributes_buildable;
 $(document).ready(function(){
 	init_data(30); // limit to 30 messages
 	init_layout();
@@ -8,6 +8,7 @@ $(document).ready(function(){
 function init_data(limit){
 	data_loves = new Firebase('https://shopwithme.firebaseIO.com/loves');
 	data_products = new Firebase('https://shopwithme.firebaseIO.com/products');
+	data_attributes = new Firebase('https://shopwithme.firebaseIO.com/attributes');
 	data_loves_limited = data_loves.limit(limit);
 }
 
@@ -31,6 +32,9 @@ function attach_data_listeners(){
 	data_products.once('value', function(snapshot) {
 		data_products_buildable = snapshot.val();
 		$(".search_loves").attr({"placeholder":"Search..","disabled":false}).focus();
+	});
+	data_attributes.once('value', function(snapshot) {
+		data_attributes_buildable = snapshot.val();
 	});
 }
 
@@ -61,6 +65,7 @@ function attach_ui_listeners(){
 		var p = data_loves.push(d,function(){
 			data_products.child(d.user_product_worse).push(p.path.m[1]);
 			data_products.child(d.user_product_better).push(p.path.m[1]);
+			data_attributes.push(d.user_product_attribute);
 		});
 		$(".submit_love input").val("");
 		$(".submit_love textarea").val("");
@@ -85,6 +90,40 @@ function attach_ui_listeners(){
 		}
 		$(".search_res").unbind().click(function(){
 			show_search_res(this);
+		});
+	});
+
+	auto_complete_input("product_better");
+	auto_complete_input("product_worse");
+	auto_complete_input("product_attribute");
+
+}
+
+function auto_complete_input(class_name){
+	$("."+class_name).keydown(function(e){
+		$("."+class_name+"_search_results").empty();
+		var query = $("."+class_name).val();
+		if(query.length < 1) return;
+		var search_matches = [];
+		if(class_name == "product_attribute"){
+			for(key in data_attributes_buildable){
+				if((data_attributes_buildable[key].toLowerCase()).indexOf(query.toLowerCase())!= -1){
+					search_matches.push(data_attributes_buildable[key]);
+				}
+			}
+		}else{
+			for(key in data_products_buildable){
+				if((key.toLowerCase()).indexOf(query.toLowerCase())!= -1){
+					search_matches.push(key);
+				}
+			}
+		}
+		for(var i=0; i< search_matches.length; i++ ){
+			$("."+class_name+"_search_results").append("<div class='"+class_name+"_search_res'>"+search_matches[i]+"</div>");
+		}
+		$("."+class_name+"_search_res").unbind().click(function(){
+			$("."+class_name+"_search_results").empty();
+			$("."+class_name).val($(this).text());
 		});
 	});
 }

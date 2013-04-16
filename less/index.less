@@ -67,6 +67,7 @@ input, textarea {
 
 }
 .submit_love{
+	z-index: 10;
 	line-height: 60px;
 	width: 840px;
 	margin: 0 auto;
@@ -93,15 +94,65 @@ input, textarea {
 		color: red;
 		opacity: 0.7;
 	}
-	.product_attribute{
-		width: 385px;
-	}
-	.product_better{
+
+	.search_res{
+		display: block;
+		font-size: 14px;
+		background: rgba(0,0,0,0.8);
 		width: 275px;
+		color: white;
+		padding: 10px;
+		line-height: 20px;
+		border-top: 1px solid #fff;
+		cursor: pointer;
+		z-index: 999;
+		&:hover{
+			opacity: 0.8;
+		};		
 	}
-	.product_worse{
-		width: 275px;
+
+	.product_attribute_wrapper{
+		position: relative;
+		.product_attribute{
+			width: 385px;
+		}
+		.product_attribute_search_results{
+			position: absolute;
+			display: block;
+			.product_attribute_search_res{
+				.search_res;
+			}
+		}
 	}
+
+	.product_better_wrapper{
+		position: relative;
+		.product_better{
+			width: 275px;
+		}
+		.product_better_search_results{
+			position: absolute;
+			display: block;
+			.product_better_search_res{
+				.search_res;
+			}
+		}
+	}
+
+	.product_worse_wrapper{
+		position: relative;
+		.product_worse{
+			width: 275px;
+		}
+		.product_worse_search_results{
+			position: absolute;
+			display: block;
+			.product_worse_search_res{
+				.search_res;
+			}
+		}
+	}
+
 	.product_reason{
 
 	}
