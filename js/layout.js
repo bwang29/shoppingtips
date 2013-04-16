@@ -125,6 +125,8 @@ function auto_complete_input(class_name){
 			$("."+class_name+"_search_results").empty();
 			$("."+class_name).val($(this).text());
 		});
+	}).click(function(){
+		$(".input_search_results").empty();
 	});
 }
 
