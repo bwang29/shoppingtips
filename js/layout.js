@@ -65,7 +65,7 @@ function attach_ui_listeners(){
 		var p = data_loves.push(d,function(){
 			data_products.child(d.user_product_worse).push(p.path.m[1]);
 			data_products.child(d.user_product_better).push(p.path.m[1]);
-			data_attributes.push(d.user_product_attribute);
+			data_attributes.child(d.user_product_attribute).set(true);
 		});
 		$(".submit_love input").val("");
 		$(".submit_love textarea").val("");
@@ -78,6 +78,7 @@ function attach_ui_listeners(){
 		}
 		$(".search_results").empty();
 		var query = $(".search_loves").val();
+		if(query.length < 1) return;
 		var search_matches = [];
 		for(key in data_products_buildable){
 			if((key.toLowerCase()).indexOf(query.toLowerCase())!= -1){
@@ -110,12 +111,13 @@ function auto_complete_input(class_name){
 		}
 		$("."+class_name+"_search_results").empty();
 		var query = $("."+class_name).val();
+		if(query.length < 1) return;
 		var search_matches = [];
 		if(class_name == "product_attribute"){
 			for(key in data_attributes_buildable){
-				if((data_attributes_buildable[key].toLowerCase()).indexOf(query.toLowerCase())!= -1){
-					search_matches.push(data_attributes_buildable[key]);
-					if(query.toLowerCase() == data_attributes_buildable[key].toLowerCase()){
+				if((key.toLowerCase()).indexOf(query.toLowerCase())!= -1){
+					search_matches.push(key);
+					if(query.toLowerCase() == key.toLowerCase()){
 						search_matches = []
 						break;
 					}
